@@ -9,16 +9,25 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'dev.db',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    }
-}
+
+
+# Django 1.2+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+#         'NAME': 'dev.db',                      # Or path to database file if using sqlite3.
+#         'USER': '',                      # Not used with sqlite3.
+#         'PASSWORD': '',                  # Not used with sqlite3.
+#         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+#         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+#     }
+# }
+
+
+# Ye Olde Django
+
+DATABASE_ENGINE = 'django.db.backends.sqlite3'
+DATABASE_NAME = 'dev.db'
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -64,9 +73,14 @@ SECRET_KEY = 'qw(l8_%pzwg=!8tb1=zeh2o-c4e*4j(h0lllu9j&v=vbzts5s1'
 LOGIN_URL = '/login/'
 AUTH_PROFILE_MODULE = 'extendedauth.Profile'
 
+# Platform46 offices
+# OAUTH_KEY = 'd0JT0WPHsFZKoiUJx2IOg'
+# OAUTH_SECRET = 'kmvcSnUzb83ilBGW018dR36vPmm1jvp0wnxGnJHtaeA'
 
-OAUTH_KEY = 'd0JT0WPHsFZKoiUJx2IOg'
-OAUTH_SECRET = 'kmvcSnUzb83ilBGW018dR36vPmm1jvp0wnxGnJHtaeA'
+# Baker St
+OAUTH_KEY = 'hVZdf3xkzLS9aYwMMdBXw'
+OAUTH_SECRET = 'fuxf1A6IN7pL8ue55UZ9u2bU9FT5XG6HWQfmHfnvgY'
+
 OAUTH_URL_REQUEST_TOKEN = 'http://goplanapp.com/oauth/request_token'
 OAUTH_URL_ACCESS_TOKEN = 'http://goplanapp.com/oauth/access_token'
 OAUTH_URL_AUTHORIZE = 'http://twp.goplanapp.com/oauth/authorize'
@@ -81,12 +95,12 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
+    #'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'repos.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -99,10 +113,17 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
-    'django.contrib.messages',
+    #'django.contrib.messages',
     # Uncomment the next line to enable the admin:
      'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
      'django.contrib.admindocs',
      'extendedauth'
 )
+
+try:
+    import django_extensions
+    INSTALLED_APPS += ('django_extensions',)
+except ImportError:
+    pass
+

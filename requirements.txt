@@ -1,0 +1,10 @@
+# Required - Hopefully 2.3 compatible
+
+Django==1.1.4
+httplib2==0.6.0
+oauth2==1.5.167
+
+# Optional (Dev)
+Werkzeug==0.6.2
+wsgiref==0.1.2
+django-extensions==0.6
