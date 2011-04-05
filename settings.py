@@ -136,6 +136,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
     'extendedauth',
+    'beanstalk',
     'goplan',
 )
 
