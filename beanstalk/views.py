@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
 from beanstalk.api import Beanstalk
+from beanstalk.models import Repo
 
 def refresh_repos(request):
     """
@@ -13,7 +14,13 @@ def refresh_repos(request):
                           username = settings.BEANSTALK_USERNAME,
                           password = settings.BEANSTALK_PASSWORD)
 
-    item_list = beanstalk.enumerate_repos()
-    print item_list
+    repo_list = beanstalk.enumerate_repos()
+
+    for item in repo_list:
+        repo, created = Repo.objects.get_or_create(repo_id=item.get('id'))
+        repo.repo_name = item.get('name')
+        repo.repo_type =  item.get('type')
+        repo.repo_title = item.get('title')
+        repo.save()
     
     return HttpResponseRedirect(reverse('list_projects'))

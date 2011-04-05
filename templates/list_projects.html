@@ -1,12 +1,19 @@
 <html>
+<head>
+    <style type="text/css">
+        .goplan { border: none; color: inherit; font-size: 1em; text-align: right; padding-right: 1em;}
+    </style>
 <body>
 <a href="{% url refresh_projects %}">refresh projects</a>
 
 <a href="{% url refresh_repos %}">refresh repos</a>
 
-
-{% for project in project_list %}
-    <p>{{ project.name}}</p>
-{% endfor %}
+{{ formset.management_form }}
+<table>
+    <tr><th class="goplan">GoPlan</th><th style="text-align: left;">Beanstalk</th></tr>
+    {% for form in formset.forms %}
+    <tr><td>{{ form.name }}</td><td>{{ form.repo }}</td></tr>
+    {% endfor %}
+</table>
 </body>
 </html>

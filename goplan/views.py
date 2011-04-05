@@ -7,10 +7,20 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-
+from django.forms.models import modelformset_factory
 
 from goplan.models import Project
+from goplan.forms import ProjectForm
 from goplan.api import GoPlanApi
+from beanstalk.models import Repo
+
+def list_projects(request, template_name='list_projects.html'):
+    ProjectFormSet = modelformset_factory(Project, ProjectForm, extra=0)
+    ctx = {
+        'formset': ProjectFormSet()
+    }
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+    
 
 def refresh_projects(request):
     """
@@ -33,9 +43,3 @@ def refresh_projects(request):
          project.save()
     
     return HttpResponseRedirect(reverse('list_projects'))
-    
-def list_projects(request, template_name='list_projects.html'):
-    ctx = {
-        'project_list': Project.objects.all()
-    }
-    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
