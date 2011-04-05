@@ -75,6 +75,9 @@ SECRET_KEY = 'qw(l8_%pzwg=!8tb1=zeh2o-c4e*4j(h0lllu9j&v=vbzts5s1'
 LOGIN_URL = '/login/'
 AUTH_PROFILE_MODULE = 'extendedauth.Profile'
 
+
+# GOPLAN STUFF - Should create a credentials app?
+# ------------------------------------------------------------
 # Platform46 offices
 # OAUTH_KEY = 'd0JT0WPHsFZKoiUJx2IOg'
 # OAUTH_SECRET = 'kmvcSnUzb83ilBGW018dR36vPmm1jvp0wnxGnJHtaeA'
@@ -88,6 +91,12 @@ GOPLAN_COMPANY_ALIAS = 'twp'
 OAUTH_URL_REQUEST_TOKEN = 'http://goplanapp.com/oauth/request_token'
 OAUTH_URL_ACCESS_TOKEN = 'http://goplanapp.com/oauth/access_token'
 OAUTH_URL_AUTHORIZE = 'http://twp.goplanapp.com/oauth/authorize'
+
+# BEANSTALK STUFF - Get this out of here?
+# ------------------------------------------------------------
+BEANSTALK_SUBDOMAIN = 'twp'
+BEANSTALK_USERNAME = 'atkinsonr'
+BEANSTALK_PASSWORD = 'belvarde'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (

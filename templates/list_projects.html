@@ -1,6 +1,10 @@
 <html>
 <body>
 <a href="{% url refresh_projects %}">refresh</a>
+
+<a href="{% url refresh_repos %}">refresh</a>
+
+
 {% for project in project_list %}
     <p>{{ project.name}}</p>
 {% endfor %}

@@ -8,10 +8,9 @@ from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 
-# Libs
-from goplan.goplan import GoPlanApi
-from goplan.models import GoPlan
 
+from goplan.models import GoPlan
+from goplan.api import GoPlanApi
 
 def refresh_projects(request):
     """

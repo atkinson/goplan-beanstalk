@@ -3,6 +3,7 @@ from django.contrib import admin
 from extendedauth.views import oauth_login, oauth_logout, \
      oauth_authenticated
 from goplan.views import refresh_projects, list_projects
+from beanstalk.views import refresh_repos
 
 admin.autodiscover()
 
@@ -13,5 +14,6 @@ urlpatterns = patterns('',
     url(r'^logout/?$', oauth_logout),
     url(r'^login/authenticated/?$', oauth_authenticated),
     url(r'^$', list_projects, name='list_projects'),
-    url(r'^refresh$', refresh_projects, name='refresh_projects'),
+    url(r'^refresh-projects$', refresh_projects, name='refresh_projects'),
+    url(r'^refresh-repos$', refresh_repos, name='refresh_repos'),
 )
