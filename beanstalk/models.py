@@ -9,3 +9,12 @@ class Repo(models.Model):
 
     def __unicode__(self):
         return self.repo_title
+        
+class Changeset(models.Model):
+    """ A changeset in a repo """
+    repo_id = models.ForeignKey(Repo)
+    revision = models.CharField(max_length=40)
+    message = models.TextField()
+    author = models.CharField(max_length=36)
+    email = models.CharField(max_length=128)
+    

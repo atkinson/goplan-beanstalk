@@ -22,6 +22,12 @@ class Beanstalk(object):
         request = urllib2.Request(url) 
         request.add_header("Authorization", self.basic_auth)
         return urllib2.urlopen(request).read()
+    
+    def _get_text(self, elt):
+        if elt.firstChild:
+            return elt.firstChild.data
+        else:
+            return ''
         
     def enumerate_repos(self):
         """ List all repositories"""
@@ -32,14 +38,27 @@ class Beanstalk(object):
         results = []
         for repo in repos:
             results.append({
-                  'id': repo.getElementsByTagName('id')[0].firstChild.data,
-                'name': repo.getElementsByTagName('name')[0].firstChild.data,
-               'title': repo.getElementsByTagName('title')[0].firstChild.data,
-                'type': repo.getElementsByTagName('type')[0].firstChild.data
+                  'id': self._get_text(repo.getElementsByTagName('id')[0]),
+                'name': self._get_text(repo.getElementsByTagName('name')[0]),
+               'title': self._get_text(repo.getElementsByTagName('title')[0]),
+                'type': self._get_text(repo.getElementsByTagName('type')[0])
             })
         return results
 
-    def get_repo(self, repo):
-        url = urllib.basejoin(self.api_base, 'repositories/%s.xml' % repo)
+    def get_changesets(self):
+        """ Get the last 15 changsets for al repos """
+        url = urllib.basejoin(self.api_base, 'changesets.xml')
         req = self._open_url(url)
+        dom = minidom.parseString(req)
+        changesets = dom.getElementsByTagName('revision-cache')
+        results = []
+        for change in changesets:
+            results.append({
+               'repo_id': self._get_text(change.getElementsByTagName('repository-id')[0]),
+              'revision': self._get_text(change.getElementsByTagName('revision')[0]),
+               'message': self._get_text(change.getElementsByTagName('message')[0]),
+                'author': self._get_text(change.getElementsByTagName('author')[0]),
+                 'email': self._get_text(change.getElementsByTagName('email')[0])
+            })
+        return results
 
