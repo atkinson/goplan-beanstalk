@@ -1,0 +1,8 @@
+<html>
+<body>
+<a href="{% url refresh_projects %}">refresh</a>
+{% for project in project_list %}
+    <p>{{ project.name}}</p>
+{% endfor %}
+</body>
+</html>

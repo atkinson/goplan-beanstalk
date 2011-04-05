@@ -5,7 +5,7 @@ import json
 import oauth2 as oauth
 
 
-class GoPlan(object):
+class GoPlanApi(object):
     def __init__(self, company_alias, consumer_key, consumer_secret, oauth_token, oauth_secret):
         """
         company_alias refers to: http://company_alias.goplanapp.com/

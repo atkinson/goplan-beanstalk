@@ -15,7 +15,8 @@ class GoPlan(models.Model):
     alias = models.CharField(max_length = 32, unique=True)
     name = models.CharField(max_length = 128)
     description = models.TextField()
-    repo = models.ForeignKey(Repo)
+    archived = models.BooleanField()
+    repo = models.ForeignKey(Repo, blank=True, null=True)
 
     def __unicode__(self):
         return self.name
