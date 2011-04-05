@@ -81,6 +81,8 @@ AUTH_PROFILE_MODULE = 'extendedauth.Profile'
 OAUTH_KEY = 'hVZdf3xkzLS9aYwMMdBXw'
 OAUTH_SECRET = 'fuxf1A6IN7pL8ue55UZ9u2bU9FT5XG6HWQfmHfnvgY'
 
+GOPLAN_COMPANY_ALIAS = 'twp'
+
 OAUTH_URL_REQUEST_TOKEN = 'http://goplanapp.com/oauth/request_token'
 OAUTH_URL_ACCESS_TOKEN = 'http://goplanapp.com/oauth/access_token'
 OAUTH_URL_AUTHORIZE = 'http://twp.goplanapp.com/oauth/authorize'
@@ -113,12 +115,10 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
-    #'django.contrib.messages',
-    # Uncomment the next line to enable the admin:
-     'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-     'django.contrib.admindocs',
-     'extendedauth'
+    'django.contrib.admin',
+    'django.contrib.admindocs',
+    'extendedauth',
+    'goplan',
 )
 
 try:
