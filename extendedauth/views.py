@@ -76,7 +76,7 @@ def oauth_authenticated(request):
     # Step 3. Lookup the user or create them if they don't exist.
     try:
         user = User.objects.get(username=settings.OAUTH_KEY)
-        profile = user.profile
+        profile = user.get_profile()
         profile.oauth_token = access_token['oauth_token']
         profile.oauth_secret = access_token['oauth_token_secret']
         profile.save()
