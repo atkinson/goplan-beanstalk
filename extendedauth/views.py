@@ -64,22 +64,32 @@ def oauth_authenticated(request):
         'oauth_token': '120889797-H5zNnM3qE0iFoTTpNEHIz3noL9FKzXiOxwtnyVOD',
         'screen_name': 'heyismysiteup'
     }
+    
+    GoPlan only returns token & secret, so JIT provisioning is a fudge.
+    {
+        'oauth_token_secret': 'IcJXPiJh8be3BjDWW50uCY31chyhsMHEhqJVsphC3M',
+        'oauth_token': '120889797-H5zNnM3qE0iFoTTpNEHIz3noL9FKzXiOxwtnyVOD'
+    }
     """
     access_token = dict(cgi.parse_qsl(content))
-    print access_token
 
     # Step 3. Lookup the user or create them if they don't exist.
     try:
-        user = User.objects.get(username=access_token['screen_name'])
+        user = User.objects.get(username=settings.OAUTH_KEY)
+        profile = user.profile
+        profile.oauth_token = access_token['oauth_token']
+        profile.oauth_secret = access_token['oauth_token_secret']
+        profile.save()
+        
     except User.DoesNotExist:
-        # When creating the user I just use their screen_name@twitter.com
-        # for their email and the oauth_token_secret for their password.
+        # When creating the user I just use their settings.OAUTH_KEY 
+        # for their login and the oauth_token_secret for their password.
         # These two things will likely never be used. Alternatively, you 
         # can prompt them for their email here. Either way, the password 
         # should never be used.
-        user = User.objects.create_user(access_token['screen_name'],
-            '%s@twitter.com' % access_token['screen_name'],
-            access_token['oauth_token_secret'])
+        user = User.objects.create_user(settings.OAUTH_KEY,
+            '%s@goplanapp.com' % settings.OAUTH_KEY,
+            settings.OAUTH_SECRET)
 
         # Save our permanent token and secret for later.
         profile = Profile()
@@ -90,8 +100,8 @@ def oauth_authenticated(request):
 
     # Authenticate the user and log them in using Django's pre-built 
     # functions for these things.
-    user = authenticate(username=access_token['screen_name'],
-        password=access_token['oauth_token_secret'])
+    user = authenticate(username=settings.OAUTH_KEY,
+        password=settings.OAUTH_SECRET)
     login(request, user)
 
     return HttpResponseRedirect('/')
