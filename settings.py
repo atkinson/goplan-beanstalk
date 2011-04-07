@@ -1,3 +1,13 @@
+"""
+     ____  _      _          _   _   _     _                       
+    |  _ \(_) ___| |__      / \ | |_| | __(_)_ __  ___  ___  _ __  
+    | |_) | |/ __| '_ \    / _ \| __| |/ /| | '_ \/ __|/ _ \| '_ \ 
+    |  _ <| | (__| | | |  / ___ \ |_|   < | | | | \__ \ (_) | | | |
+    |_| \_\_|\___|_| |_| /_/   \_\__|_|\_\|_|_| |_|___/\___/|_| |_|
+
+    Copyright 2011 (atkinsonr@gmail.com / @tkinson)
+"""
+
 # Django settings for repos project.
 import os
 PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
@@ -27,7 +37,6 @@ MANAGERS = ADMINS
 
 
 # Ye Olde Django
-
 DATABASE_ENGINE = 'django.db.backends.sqlite3'
 DATABASE_NAME = 'dev.db'
 
