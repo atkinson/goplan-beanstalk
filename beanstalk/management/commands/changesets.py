@@ -40,4 +40,5 @@ class Command(BaseCommand):
                             end_time
                         ))
         for change in new_changes:
-            print change.message
+            print change
+            print change.get_absolute_url()

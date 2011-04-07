@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 class Repo(models.Model):
     """ A beanstalk repo """
@@ -8,7 +9,11 @@ class Repo(models.Model):
     repo_title = models.TextField(max_length = 128)
 
     def __unicode__(self):
-        return self.repo_title
+        return self.repo_name
+        
+    def get_absolute_url(self):
+        """ This is the Beanstalk URL of the repo """
+        return 'https://%s.beanstalkapp.com/%s/'%(settings.BEANSTALK_SUBDOMAIN, self.repo_name)
 
         
 class Changeset(models.Model):
@@ -20,6 +25,17 @@ class Changeset(models.Model):
     author = models.CharField(max_length=36)
     email = models.CharField(max_length=128)
 
+    def __unicode__(self):
+        return '[%s %s] %s'%(self.repo, self.revision, self.message)
+
+    def get_absolute_url(self):
+        """ This is the beanstalk URL of the changeset """
+        return 'https://%s.beanstalkapp.com/%s/changesets/%s'%(settings.BEANSTALK_SUBDOMAIN, self.repo, self.revision)
+        
+    def get_related_issues(self):
+        """ Returns a list of strings that match the patern #n+ eg: ['#22'] """
+        return re.findall(r'#[0-9+]*', self.message)
+        
     
 def refresh_repositories():
     """ Get a list of repos from the API and makes sure they are in the db """
