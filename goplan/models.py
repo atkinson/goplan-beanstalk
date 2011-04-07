@@ -7,7 +7,7 @@ class Project(models.Model):
     name = models.CharField(max_length = 128)
     description = models.TextField()
     archived = models.BooleanField()
-    repo = models.ForeignKey(Repo, blank=True, null=True)
+    repo = models.ForeignKey(Repo, blank=True, null=True, related_name='project')
 
     def __unicode__(self):
         return self.name

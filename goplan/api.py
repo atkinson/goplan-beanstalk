@@ -9,7 +9,7 @@
 """
 
 # Python
-import json
+import json, urllib
 
 # External Libs
 import oauth2 as oauth
@@ -33,5 +33,17 @@ class GoPlanApi(object):
         For each project, get or create a model
         Return a queryset of these
         """
-        response, content = self.client.request('http://%s.goplanapp.com/api/projects/get_all?format=json'% self.company_alias)
+        response, content = self.client.request(
+                    'http://%s.goplanapp.com/api/projects/get_all?format=json'% self.company_alias)
         return json.loads(content)
+        
+        
+        
+    def comment(self, project_alias, item_type, item_id, message):
+        """
+        Update the task with a comment derived from the changeset message.
+        """
+        safe_message = urllib.quote(message)
+        response, content = self.client.request(
+            'http://%s.goplanapp.com/%s/api/comments/create?&comment[commentable_type]=%s&comment[commentable_cid]=%s&comment[text]=%s' \
+            %(self.company_alias, project_alias, item_type, item_id, safe_message))

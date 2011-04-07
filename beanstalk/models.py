@@ -1,3 +1,4 @@
+import re
 from django.db import models
 from django.conf import settings
 
@@ -32,11 +33,16 @@ class Changeset(models.Model):
         """ This is the beanstalk URL of the changeset """
         return 'https://%s.beanstalkapp.com/%s/changesets/%s'%(settings.BEANSTALK_SUBDOMAIN, self.repo, self.revision)
         
-    def get_related_issues(self):
-        """ Returns a list of strings that match the patern #n+ eg: ['#22'] """
-        return re.findall(r'#[0-9+]*', self.message)
-        
+    def get_related_tasks(self):
+        """ Returns a list of strings that match the task pattern eg: task22 returns ['22'] """
+        tasks = re.findall(r'task[0-9+]*', self.message)
+        return [task.strip('task') for task in tasks]
     
+    def get_related_tickets(self):
+        """ Returns a list of strings that match the ticket pattern eg: ticket22 returns ['22'] """
+        tickets = re.findall(r'ticket[0-9+]*', self.message)
+        return [ticket.strip('ticket') for ticket in tickets]
+        
 def refresh_repositories():
     """ Get a list of repos from the API and makes sure they are in the db """
     from django.conf import settings
