@@ -16,6 +16,7 @@ from goplan.forms import ProjectForm
 from goplan.api import GoPlanApi
 from beanstalk.models import Repo
 
+@login_required
 def list_projects(request, template_name='list_projects.html'):
     ProjectFormSet = modelformset_factory(Project, ProjectForm, extra=0)
     ctx = {}
