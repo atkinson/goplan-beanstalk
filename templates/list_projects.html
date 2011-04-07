@@ -1,6 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
 <html>
 <head>
+    <title>The Working Party - GoPlan Beanstalk Connector</title>
     <style type="text/css">
         /* tags */
         html        { background-color: #eee;}
@@ -47,7 +48,7 @@
     <form method="POST">
     {{ formset.management_form }}
     <table class="content rounded">
-        <tr><th colspan="2" style="text-align:left; font-size: 1.6em; line-height: 2em;">My Applications</th></tr>
+        <tr><th colspan="2" style="text-align:left; font-size: 1.6em; line-height: 2em;">TWP Projects</th></tr>
         <tr><th class="goplan">GoPlan</th><th style="text-align: left;">Beanstalk</th></tr>
         {% for form in formset.forms %}
         <tr><td>{{ form.id }} {{ form.name }}</td><td>{{ form.repo }}</td></tr>
