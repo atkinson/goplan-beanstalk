@@ -24,21 +24,21 @@ MANAGERS = ADMINS
 
 
 # Django 1.2+
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-#         'NAME': 'dev.db',                      # Or path to database file if using sqlite3.
-#         'USER': '',                      # Not used with sqlite3.
-#         'PASSWORD': '',                  # Not used with sqlite3.
-#         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-#         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'goplan_beanstalk',                      # Or path to database file if using sqlite3.
+        'USER': 'twp_gb',                      # Not used with sqlite3.
+        'PASSWORD': 'twp_gb',                  # Not used with sqlite3.
+        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+    }
+}
 
 
 # Ye Olde Django
-DATABASE_ENGINE = 'django.db.backends.sqlite3'
-DATABASE_NAME = 'dev.db'
+#DATABASE_ENGINE = 'django.db.backends.sqlite3'
+#DATABASE_NAME = 'dev.db'
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -92,8 +92,12 @@ AUTH_PROFILE_MODULE = 'extendedauth.Profile'
 # OAUTH_SECRET = 'kmvcSnUzb83ilBGW018dR36vPmm1jvp0wnxGnJHtaeA'
 
 # Baker St
-OAUTH_KEY = 'hVZdf3xkzLS9aYwMMdBXw'
-OAUTH_SECRET = 'fuxf1A6IN7pL8ue55UZ9u2bU9FT5XG6HWQfmHfnvgY'
+#OAUTH_KEY = 'hVZdf3xkzLS9aYwMMdBXw'
+#OAUTH_SECRET = 'fuxf1A6IN7pL8ue55UZ9u2bU9FT5XG6HWQfmHfnvgY'
+
+# twp.sydneybook.com
+OAUTH_KEY = 'yMxJfgIQS0fem3smRFZZLQ'
+OAUTH_SECRET = 'EG3UwpAf1eYzPPE2pE96e0b0G6c272zm3E51BUuZXE'
 
 GOPLAN_COMPANY_ALIAS = 'twp'
 
@@ -109,8 +113,8 @@ BEANSTALK_PASSWORD = 'belvarde'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.load_template_source', #old skool django
-    #'django.template.loaders.filesystem.Loader',
+    #'django.template.loaders.filesystem.load_template_source', #old skool django
+    'django.template.loaders.filesystem.Loader',
     #'django.template.loaders.app_directories.Loader',
     #'django.template.loaders.eggs.Loader',
 )
