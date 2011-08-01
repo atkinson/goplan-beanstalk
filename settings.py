@@ -27,9 +27,9 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'goplan_beanstalk',                      # Or path to database file if using sqlite3.
-        'USER': 'twp_gb',                      # Not used with sqlite3.
-        'PASSWORD': 'twp_gb',                  # Not used with sqlite3.
+        'NAME': '',                      # Or path to database file if using sqlite3.
+        'USER': '',                      # Not used with sqlite3.
+        'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -78,7 +78,7 @@ MEDIA_URL = ''
 ADMIN_MEDIA_PREFIX = '/media/'
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'qw(l8_%pzwg=!8tb1=zeh2o-c4e*4j(h0lllu9j&v=vbzts5s1'
+SECRET_KEY = ''
 
 # Auth
 LOGIN_URL = '/login/'
@@ -87,19 +87,11 @@ AUTH_PROFILE_MODULE = 'extendedauth.Profile'
 
 # GOPLAN STUFF - Should create a credentials app?
 # ------------------------------------------------------------
-# Platform46 offices
-# OAUTH_KEY = 'd0JT0WPHsFZKoiUJx2IOg'
-# OAUTH_SECRET = 'kmvcSnUzb83ilBGW018dR36vPmm1jvp0wnxGnJHtaeA'
 
-# Baker St
-#OAUTH_KEY = 'hVZdf3xkzLS9aYwMMdBXw'
-#OAUTH_SECRET = 'fuxf1A6IN7pL8ue55UZ9u2bU9FT5XG6HWQfmHfnvgY'
+OAUTH_KEY = ''
+OAUTH_SECRET = ''
 
-# twp.sydneybook.com
-OAUTH_KEY = 'yMxJfgIQS0fem3smRFZZLQ'
-OAUTH_SECRET = 'EG3UwpAf1eYzPPE2pE96e0b0G6c272zm3E51BUuZXE'
-
-GOPLAN_COMPANY_ALIAS = 'twp'
+GOPLAN_COMPANY_ALIAS = ''
 
 OAUTH_URL_REQUEST_TOKEN = 'http://goplanapp.com/oauth/request_token'
 OAUTH_URL_ACCESS_TOKEN = 'http://goplanapp.com/oauth/access_token'
@@ -107,9 +99,9 @@ OAUTH_URL_AUTHORIZE = 'http://twp.goplanapp.com/oauth/authorize'
 
 # BEANSTALK STUFF - Get this out of here?
 # ------------------------------------------------------------
-BEANSTALK_SUBDOMAIN = 'twp'
-BEANSTALK_USERNAME = 'atkinsonr'
-BEANSTALK_PASSWORD = 'belvarde'
+BEANSTALK_SUBDOMAIN = ''
+BEANSTALK_USERNAME = ''
+BEANSTALK_PASSWORD = ''
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
